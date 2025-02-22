@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Black UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Login Page -->
+      <form class="auth-card glass fade-in" action="#" method="GET">
+        <h1>Login</h1>
+        <p class="subtitle">Enter UserName and Password</p>
+        
+        <div class="form-group">
+          <input type="text" placeholder="Username" id="login_user" required>
+        </div>
+        
+        <div class="form-group">
+          <input type="password" placeholder="Password" id="login_password" required>
+        </div>
+        
+        <button class="btn hover-scale" id="login_button">Login</button>
+        
+        <div class="links" style="margin-top: 15px;">
+          <a href="index.html" class="link">Create Account</a>
+          <!-- <a href="admin.html" class="link">Admin Login</a> -->
+        </div>
+      </form>
+    </div>
+  </body>
+<script>
+let login_user=document.getElementById("login_user");
+let login_password=document.getElementById("login_password");
+let login_button=document.getElementById("login_button");
+
+// Show POP
+function showPopup(message) {
+  // Show POP
+    const popup = document.createElement("div");
+    popup.innerText = message;
+    popup.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: -300px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        transition: right 0.5s ease-in-out;
+        overflow: hidden;
+    `;
+    
+    const timeline = document.createElement("div");
+    timeline.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        background: #00ff00;
+        width: 100%;
+    `;
+    popup.appendChild(timeline);
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.style.right = "20px";
+        timeline.style.transition = "width 3s linear";
+        timeline.style.width = "0%";
+    }, 100);
+
+    setTimeout(() => {
+        popup.style.transform = "scale(0)";
+        popup.style.transition = "transform 0.5s ease-in-out";
+        setTimeout(() => {
+            popup.remove();
+        }, 500);
+        window.location.href="registration.html";
+    }, 3000);
+}
+
+
+// Show POP
+function showPopup1(message, bgColor, timelineColor) {
+    const popup = document.createElement("div");
+    popup.innerText = message;
+    popup.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: -300px;
+        background: ${bgColor};
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        transition: right 0.5s ease-in-out;
+        overflow: hidden;
+    `;
+    
+    const timeline = document.createElement("div");
+    timeline.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        background: ${timelineColor};
+        width: 100%;
+    `;
+    popup.appendChild(timeline);
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.style.right = "20px";
+        timeline.style.transition = "width 3s linear";
+        timeline.style.width = "0%";
+    }, 100);
+
+    setTimeout(() => {
+        popup.style.transform = "scale(0)";
+        popup.style.transition = "transform 0.5s ease-in-out";
+        setTimeout(() => {
+            popup.remove();
+        }, 500);
+    }, 3000);
+}
+
+
+login_button.addEventListener("click",function(e){
+  e.preventDefault();
+
+
+   let all_user_data=JSON.parse(localStorage.getItem("all_user"));
+
+   all_user_data.forEach((value,index) => {
+       if(value.reg_email1==login_user.value && value.reg_pass1==login_password.value){
+             showPopup("Login Successfully");
+       }else{
+        
+           if(value.reg_email1!=login_user.value){
+            showPopup1("Wrong Email Address","rgba(0, 0, 0, 0.8);", "#ff0000");
+            login_user.value="";
+          }else{
+            showPopup1("Wrong Password","rgba(0, 0, 0, 0.8);", "#ff0000");
+            login_password.value="";
+           }
+
+       }
+   });
+  
+
+
+})
+</script>
+</html>

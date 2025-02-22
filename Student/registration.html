@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration - Modern Black UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body style="overflow-y: scroll;">
+    <div class="container">
+      <form class="auth-card glass fade-in" action="#" method="GET">
+        <h1>Student Registration</h1>
+        <p class="subtitle">Enter your details to register</p>
+        
+        <div class="form-group">
+          <label class="input-label">First Name</label>
+          <input type="text" placeholder="Enter your first name" id="f_name" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">Middle Name</label>
+          <input type="text" placeholder="Enter your middle name" id="m_name">
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">Last Name</label>
+          <input type="text" placeholder="Enter your last name" id="l_name" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">Age</label>
+          <input type="number" placeholder="Enter your age" min="1" max="100" id="age" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">Select Stream</label>
+          <select  id="select1" required>
+            <option value="" disabled selected>Choose your stream</option>
+            <option value="science">Science</option>
+            <option value="commerce">Commerce</option>
+            <option value="arts">Arts</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">Date of Birth</label>
+          <input type="date" id="date" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">Gender</label>
+          <div class="radio-options horizontal">
+            <label class="radio-item">
+              <input type="radio" name="gender" value="male" required>
+              <span>Male</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="gender" value="female">
+              <span>Female</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="gender" value="other">
+              <span>Other</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="input-label">City</label>
+          <input type="text" placeholder="Enter your city" id="city" required>
+        </div>
+        
+        <button type="submit" class="btn hover-scale" id="student_reg">Register</button>
+        
+        <div class="links" style="margin-top: 20px;">
+          <a href="index.html" class="link">Back to Login</a>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+
+function showPopup1(message, bgColor, timelineColor) {
+    const popup = document.createElement("div");
+    popup.innerText = message;
+    popup.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: -300px;
+        background: ${bgColor};
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        transition: right 0.5s ease-in-out;
+        overflow: hidden;
+    `;
+    
+    const timeline = document.createElement("div");
+    timeline.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        background: ${timelineColor};
+        width: 100%;
+    `;
+    popup.appendChild(timeline);
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.style.right = "20px";
+        timeline.style.transition = "width 3s linear";
+        timeline.style.width = "0%";
+    }, 100);
+
+    setTimeout(() => {
+        popup.style.transform = "scale(0)";
+        popup.style.transition = "transform 0.5s ease-in-out";
+        setTimeout(() => {
+            popup.remove();
+        }, 500);
+    }, 3000);
+}
+
+
+   let f_name=document.getElementById("f_name");
+   let m_name=document.getElementById("m_name");
+   let l_name=document.getElementById("l_name");
+   let age=document.getElementById("age");
+   let date=document.getElementById("date");
+   let city=document.getElementById("city");
+   let select1=document.getElementById("select1");
+
+   let student_reg=document.getElementById("student_reg");
+    let course;
+
+   select1.addEventListener("change",function(e){
+         course=e.target.value;
+   })
+   
+   student_reg.addEventListener("click",function(e){
+     e.preventDefault();
+
+
+      // let gender=document.querySelector('input[name="gender"]:checked');
+
+      let genderElement = document.querySelector('input[name="gender"]:checked');
+      let gender1 = genderElement ? genderElement.value : "";  // Handle null safely
+
+
+
+      // let gender1=gender.value;
+      let f_name1=f_name.value;
+      let m_name1=m_name.value;
+      let l_name1=l_name.value;
+      let age1=age.value;
+      let date1=date.value;
+      let city1=city.value;
+      let course1=course;
+
+      // if(gender1 &&  f_name1 &&  m_name1 && l_name1 && age1 && date1 && city1 &&  course1){   
+      //     let all_student=JSON.parse(localStorage.getItem("student_1")) || [];
+      //     all_student.push({f_name1 ,  m_name1 , l_name1 , age1 ,   course1  ,date1 , gender1 , city1 });
+      //     localStorage.setItem("student_1",JSON.stringify(all_student));
+      //     window.location.href="student_card.html";
+      // }else{
+      //   showPopup1("Please enter valid detail","rgba(0, 0, 0, 0.8);", "#ff0000");    
+      // }
+
+      if (!gender1 || !f_name1 || !l_name1 || !age1 || !date1 || !city1 || !course1) {
+        showPopup1("Please enter valid details", "rgba(0, 0, 0, 0.8)", "#ff0000");    
+        return;
+    }
+
+    let all_student = JSON.parse(localStorage.getItem("student_1")) || [];
+    all_student.push({ f_name1, m_name1, l_name1, age1, course1, date1, gender1, city1 });
+    localStorage.setItem("student_1", JSON.stringify(all_student));
+
+    window.location.href = "student_card.html";
+
+      
+      // gender.checked=false;
+      gender.value=" ";
+      f_name.value=" ";
+      m_name.value=" ";
+      l_name.value=" ";
+      age.value=" ";
+      date.value=" ";
+      city.value=" ";
+      course.value=" ";
+
+         
+    });
+
+
+  </script>
+</html>

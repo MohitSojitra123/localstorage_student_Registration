@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Card</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: radial-gradient(circle, #1a1a1a, #0a0a0a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            /* overflow: hidden; */
+            margin-top: 50px;
+            margin-bottom: 50px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 100px;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .card {
+            background: linear-gradient(135deg, #252525, #333333);
+            color: white;
+            width: 320px;
+            padding: 25px;
+            border-radius: 15px;
+            /* box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.6); */
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out forwards, floating 3s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+            /* box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.7), 0 0 5px rgba(255, 165, 0, 0.5); */
+            box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .card h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ffa500, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 16px;
+            color: #ddd;
+            border-bottom: 1px solid rgba(255, 165, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .info:last-child {
+            border-bottom: none;
+        }
+        
+        .info:hover {
+            transform: scale(1.03);
+            color: #ffa500;
+        }
+        
+        .info i {
+            margin-right: 10px;
+            color: #ffa500;
+        }
+        
+        .info strong {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .info span {
+            flex: 1;
+            text-align: right;
+            font-weight: 600;
+        }
+
+
+        
+    </style>
+</head>
+<body class="body_1">
+
+
+
+   
+
+
+    <!-- <div class="card">
+        <h2>Student Details</h2>
+        <div class="info"><i class="fas fa-user"></i><strong>First Name:</strong> <span>John</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Middle Name:</strong> <span>Michael</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Last Name:</strong> <span>Doe</span></div>
+        <div class="info"><i class="fas fa-school"></i><strong>Standard:</strong> <span>10</span></div>
+        <div class="info"><i class="fas fa-birthday-cake"></i><strong>Age:</strong> <span>15</span></div>
+        <div class="info"><i class="fas fa-city"></i><strong>City:</strong> <span>New York</span></div>
+        <div class="info"><i class="fas fa-book"></i><strong>Stream:</strong> <span>Science</span></div>
+        <div class="info"><i class="fas fa-venus-mars"></i><strong>Gender:</strong> <span>Male</span></div>
+        <div class="info"><i class="fas fa-calendar"></i><strong>DOB:</strong> <span>12 March 2009</span></div>
+    </div>
+
+
+    <div class="card">
+        <h2>Student Details</h2>
+        <div class="info"><i class="fas fa-user"></i><strong>First Name:</strong> <span>John</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Middle Name:</strong> <span>Michael</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Last Name:</strong> <span>Doe</span></div>
+        <div class="info"><i class="fas fa-school"></i><strong>Standard:</strong> <span>10</span></div>
+        <div class="info"><i class="fas fa-birthday-cake"></i><strong>Age:</strong> <span>15</span></div>
+        <div class="info"><i class="fas fa-city"></i><strong>City:</strong> <span>New York</span></div>
+        <div class="info"><i class="fas fa-book"></i><strong>Stream:</strong> <span>Science</span></div>
+        <div class="info"><i class="fas fa-venus-mars"></i><strong>Gender:</strong> <span>Male</span></div>
+        <div class="info"><i class="fas fa-calendar"></i><strong>DOB:</strong> <span>12 March 2009</span></div>
+    </div>
+
+
+    <div class="card">
+        <h2>Student Details</h2>
+        <div class="info"><i class="fas fa-user"></i><strong>First Name:</strong> <span>John</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Middle Name:</strong> <span>Michael</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Last Name:</strong> <span>Doe</span></div>
+        <div class="info"><i class="fas fa-school"></i><strong>Standard:</strong> <span>10</span></div>
+        <div class="info"><i class="fas fa-birthday-cake"></i><strong>Age:</strong> <span>15</span></div>
+        <div class="info"><i class="fas fa-city"></i><strong>City:</strong> <span>New York</span></div>
+        <div class="info"><i class="fas fa-book"></i><strong>Stream:</strong> <span>Science</span></div>
+        <div class="info"><i class="fas fa-venus-mars"></i><strong>Gender:</strong> <span>Male</span></div>
+        <div class="info"><i class="fas fa-calendar"></i><strong>DOB:</strong> <span>12 March 2009</span></div>
+    </div>
+
+
+    <div class="card">
+        <h2>Student Details</h2>
+        <div class="info"><i class="fas fa-user"></i><strong>First Name:</strong> <span>John</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Middle Name:</strong> <span>Michael</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Last Name:</strong> <span>Doe</span></div>
+        <div class="info"><i class="fas fa-school"></i><strong>Standard:</strong> <span>10</span></div>
+        <div class="info"><i class="fas fa-birthday-cake"></i><strong>Age:</strong> <span>15</span></div>
+        <div class="info"><i class="fas fa-city"></i><strong>City:</strong> <span>New York</span></div>
+        <div class="info"><i class="fas fa-book"></i><strong>Stream:</strong> <span>Science</span></div>
+        <div class="info"><i class="fas fa-venus-mars"></i><strong>Gender:</strong> <span>Male</span></div>
+        <div class="info"><i class="fas fa-calendar"></i><strong>DOB:</strong> <span>12 March 2009</span></div>
+    </div> -->
+</body>
+<script>
+
+     let all_data=JSON.parse(localStorage.getItem("student_1"));
+
+     
+     let body_1=document.getElementsByClassName("body_1")[0];
+
+     for(let i=0; i<all_data.length; i++){
+        let div_1=document.createElement("div");
+        div_1.setAttribute("class","card");
+
+        // f_name1 ,  m_name1 , l_name1 , age1 ,   course1  ,date1 , gender1 , city1 
+
+        div_1.innerHTML=
+        `  
+        <h2>Student Details</h2>
+        <div class="info"><i class="fas fa-user"></i><strong>First Name:</strong> <span>${all_data[i].f_name1}</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Middle Name:</strong> <span>${all_data[i].m_name1}</span></div>
+        <div class="info"><i class="fas fa-user"></i><strong>Last Name:</strong> <span>${all_data[i].l_name1}</span></div>
+        <div class="info"><i class="fas fa-birthday-cake"></i><strong>Age:</strong> <span>${all_data[i].age1}</span></div>
+        <div class="info"><i class="fas fa-city"></i><strong>City:</strong> <span>${all_data[i].city1}</span></div>
+        <div class="info"><i class="fas fa-book"></i><strong>Stream:</strong> <span>${all_data[i].course1}</span></div>
+        <div class="info"><i class="fas fa-venus-mars"></i><strong>Gender:</strong> <span>${all_data[i].gender1}</span></div>
+        <div class="info"><i class="fas fa-calendar"></i><strong>DOB:</strong> <span>${all_data[i].date1}</span></div>
+        `;
+
+         body_1.append(div_1);
+
+
+
+     }
+
+
+</script>
+</html>

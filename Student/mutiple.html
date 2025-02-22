@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store User Credentials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin-bottom: 10px;
+        }
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Store Multiple Usernames and Passwords</h2>
+    
+    <form id="userForm">
+        <input type="text" id="username" placeholder="Enter Username" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <button onclick="retrieveUsers()">Retrieve Users</button>
+    
+    <h3>Stored Users:</h3>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username && password) {
+                let users = JSON.parse(localStorage.getItem("users")) || []; // Retrieve existing users or empty array
+                
+                users.push({ username, password }); // Add new user to the array
+
+                localStorage.setItem("users", JSON.stringify(users)); // Store updated user list in localStorage
+
+                alert("User added successfully!");
+                document.getElementById("userForm").reset(); // Reset form fields
+            } else {
+                alert("Please enter both username and password.");
+            }
+        });
+
+        function retrieveUsers() {
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            if (users.length > 0) {
+                document.getElementById("output").textContent = JSON.stringify(users, null, 2);
+            } else {
+                alert("No users found in LocalStorage!");
+            }
+        }
+    </script>
+
+</body>
+</html>

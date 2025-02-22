@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Animated Background */
+  body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      rgba(45, 45, 255, 0.05),
+      rgba(120, 0, 255, 0.05),
+      rgba(200, 0, 255, 0.05)
+    );
+    animation: backgroundFlow 15s linear infinite;
+    z-index: -1;
+  }
+  
+  @keyframes backgroundFlow {
+    0% {
+      transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    }
+  }
+  
+  .container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  /* Glass Card */
+  .auth-card {
+    width: 100%;
+    max-width: 28rem;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    animation: cardFloat 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .auth-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: cardGlow 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes cardGlow {
+    0%, 100% {
+      transform: translate(-30%, -30%);
+    }
+    50% {
+      transform: translate(-70%, -70%);
+    }
+  }
+  
+  /* Headings */
+  h1 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes titleGlow {
+    0%, 100% {
+      filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+    }
+  }
+  
+  .subtitle {
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  /* Input Fields with new animations */
+  input,
+  select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    animation: inputPulse 1.5s infinite;
+  }
+  
+  @keyframes inputPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+  
+  /* Button with new effects */
+  .btn {
+    width: 100%;
+    background: linear-gradient(45deg, #ffffff, #e0e0e0);
+    color: black;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: 0.5s;
+  }
+  
+  .btn:hover::before {
+    left: 100%;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  }
+  
+  .btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Input Label Animation */
+  .input-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus + .input-label,
+  input:not(:placeholder-shown) + .input-label {
+    color: white;
+    transform: translateY(-1.5rem) scale(0.9);
+  }
+  
+  /* Links with hover effect */
+  .link {
+    color: #9ca3af;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+  
+  .link:hover {
+    color: white;
+  }
+  
+  .link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  /* Radio and Select styling */
+  .radio-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  input[type="radio"] {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+  }
+  
+  /* Date Input */
+  input[type="date"] {
+    color: #9ca3af;
+  }
+  
+  input[type="date"]:focus {
+    color: white;
+  }
+  
+  /* Error States with animation */
+  @keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  input:invalid {
+    border-color: rgba(239, 68, 68, 0.5);
+    animation: errorShake 0.3s ease-in-out;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .auth-card {
+      padding: 1.5rem;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    .radio-options {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+
+
+
+
+

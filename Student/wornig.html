@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+    const successButton = document.createElement("button");
+    successButton.innerText = "Register";
+    successButton.style.cssText = "padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; background: #333; color: white; border-radius: 5px; margin: 20px;";
+    document.body.appendChild(successButton);
+
+    const warningButton = document.createElement("button");
+    warningButton.innerText = "Show Warning";
+    warningButton.style.cssText = "padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; background: #ff9900; color: white; border-radius: 5px; margin: 20px;";
+    document.body.appendChild(warningButton);
+
+    successButton.addEventListener("click", function () {
+        showPopup("Registration is Successfully Complete", "rgba(0, 0, 0, 0.8)", "#00ff00");
+    });
+
+    warningButton.addEventListener("click", function () {
+        showPopup("Please enter valid detail", "rgba(255, 99, 71, 0.9)", "#ff0000");
+    });
+});
+
+function showPopup(message, bgColor, timelineColor) {
+    const popup = document.createElement("div");
+    popup.innerText = message;
+    popup.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: -300px;
+        background: ${bgColor};
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        transition: right 0.5s ease-in-out;
+        overflow: hidden;
+    `;
+    
+    const timeline = document.createElement("div");
+    timeline.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        background: ${timelineColor};
+        width: 100%;
+    `;
+    popup.appendChild(timeline);
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.style.right = "20px";
+        timeline.style.transition = "width 3s linear";
+        timeline.style.width = "0%";
+    }, 100);
+
+    setTimeout(() => {
+        popup.style.transform = "scale(0)";
+        popup.style.transition = "transform 0.5s ease-in-out";
+        setTimeout(() => {
+            popup.remove();
+        }, 500);
+    }, 3000);
+}
+
+</script>
+</html>
