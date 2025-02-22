@@ -179,19 +179,10 @@ function showPopup1(message, bgColor, timelineColor) {
     all_student.push({ f_name1, m_name1, l_name1, age1, course1, date1, gender1, city1 });
     localStorage.setItem("student_1", JSON.stringify(all_student));
 
-    window.location.href = "student_card.html";
-
+    window.location.href = "student_card.html"; 
+    
+    document.querySelector("form").reset();
       
-      // gender.checked=false;
-      gender.value=" ";
-      f_name.value=" ";
-      m_name.value=" ";
-      l_name.value=" ";
-      age.value=" ";
-      date.value=" ";
-      city.value=" ";
-      course.value=" ";
-
          
     });
 
