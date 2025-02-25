@@ -102,7 +102,17 @@
             font-weight: 600;
         }
 
-
+        .edit_btn{
+            width: 100%;
+            height: 40px;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            border-radius: 20px;
+            background-color: rgb(161, 203, 97);
+        }
         
     </style>
 </head>
@@ -192,14 +202,38 @@
         <div class="info"><i class="fas fa-book"></i><strong>Stream:</strong> <span>${all_data[i].course1}</span></div>
         <div class="info"><i class="fas fa-venus-mars"></i><strong>Gender:</strong> <span>${all_data[i].gender1}</span></div>
         <div class="info"><i class="fas fa-calendar"></i><strong>DOB:</strong> <span>${all_data[i].date1}</span></div>
+        <div class="edit_btn" onclick="set_new(${i})">Edit</div>
         `;
-
          body_1.append(div_1);
-
-
 
      }
 
+     function set_new(current_index) {
+
+    let all_data = JSON.parse(localStorage.getItem("student_1"));
+
+    let p_firstname = prompt("Enter First Name...", all_data[current_index].f_name1);
+    let p_middlename = prompt("Enter Middle Name...", all_data[current_index].m_name1);
+    let p_lastname = prompt("Enter Last Name...", all_data[current_index].l_name1);
+    let p_age = prompt("Enter Age...", all_data[current_index].age1);
+    let p_city = prompt("Enter City Name...", all_data[current_index].city1);
+
+
+    all_data[current_index] = {
+        f_name1: p_firstname,
+        m_name1: p_middlename,
+        l_name1: p_lastname,
+        age1: p_age,
+        course1: all_data[current_index].course1, 
+        date1: all_data[current_index].date1,
+        gender1: all_data[current_index].gender1,
+        city1: p_city
+    };
+
+    localStorage.setItem("student_1", JSON.stringify(all_data));
+
+    location.reload();
+    }
 
 </script>
 </html>
