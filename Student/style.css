@@ -276,6 +276,7 @@
   input[type="date"]:focus {
     color: white;
   }
+
   
   /* Error States with animation */
   @keyframes errorShake {
